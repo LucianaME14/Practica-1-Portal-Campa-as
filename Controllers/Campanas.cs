@@ -31,6 +31,7 @@ public class CampanasController : Controller
         ViewBag.EstadoSeleccionado = estado;
         ViewBag.Categorias = new List<string> { "Electro", "Hogar", "Moda", "Tecnología" };
         ViewBag.Estados = new List<string> { "Vigente", "Próxima", "Finalizada" };
+        ViewBag.TotalResultados = campanas.Count();
 
         return View(campanas.ToList());
     }

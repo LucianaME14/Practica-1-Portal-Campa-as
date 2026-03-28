@@ -46,6 +46,8 @@
     <a asp-action="Index" class="btn btn-secondary-soft">Limpiar</a>
 </form>
 
+<p class="summary-subtitle">Se encontraron @ViewBag.TotalResultados campaña(s).</p>
+
 <div class="campaign-grid">
     @if (Model != null && Model.Any())
     {
