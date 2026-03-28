@@ -27,3 +27,4 @@ C:\Users\lmore\.vscode\extensions\ms-dotnettools.vscode-dotnet-pack-1.0.13\misc\
 C:\Users\lmore\.vscode\extensions\ms-dotnettools.vscode-dotnet-pack-1.0.13\misc\PortalCampanas\obj\Debug\net8.0\PortalCampanas.pdb
 C:\Users\lmore\.vscode\extensions\ms-dotnettools.vscode-dotnet-pack-1.0.13\misc\PortalCampanas\obj\Debug\net8.0\PortalCampanas.genruntimeconfig.cache
 C:\Users\lmore\.vscode\extensions\ms-dotnettools.vscode-dotnet-pack-1.0.13\misc\PortalCampanas\obj\Debug\net8.0\ref\PortalCampanas.dll
+C:\Users\lmore\.vscode\extensions\ms-dotnettools.vscode-dotnet-pack-1.0.13\misc\PortalCampanas\obj\Debug\net8.0\PortalCampanas.sourcelink.json

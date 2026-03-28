@@ -18,19 +18,10 @@ public class CampanasController : Controller
         var campanas = _campanaService.ObtenerTodas().AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(categoria))
-        {
             campanas = campanas.Where(c => c.Categoria == categoria);
-        }
 
         if (!string.IsNullOrWhiteSpace(estado))
-        {
             campanas = campanas.Where(c => c.Estado == estado);
-        }
-
-        ViewBag.CategoriaSeleccionada = categoria;
-        ViewBag.EstadoSeleccionado = estado;
-        ViewBag.Categorias = new List<string> { "Electro", "Hogar", "Moda", "Tecnología" };
-        ViewBag.Estados = new List<string> { "Vigente", "Próxima", "Finalizada" };
 
         return View(campanas.ToList());
     }
@@ -40,9 +31,7 @@ public class CampanasController : Controller
         var campana = _campanaService.ObtenerPorId(id);
 
         if (campana == null)
-        {
             return NotFound();
-        }
 
         return View(campana);
     }
@@ -56,12 +45,9 @@ public class CampanasController : Controller
             TotalCampanas = campanas.Count,
             CampanasVigentes = campanas.Count(c => c.Estado == "Vigente"),
             CampanasProximas = campanas.Count(c => c.Estado == "Próxima"),
-            PromedioDescuento = campanas.Any()
-                ? Math.Round(campanas.Average(c => c.DescuentoPct), 2)
-                : 0,
-            CantidadPorCanal = campanas
-                .GroupBy(c => c.Canal)
-                .ToDictionary(g => g.Key, g => g.Count())
+            PromedioDescuento = campanas.Any() ? campanas.Average(c => c.DescuentoPct) : 0,
+            CantidadPorCanal = campanas.GroupBy(c => c.Canal)
+                                       .ToDictionary(g => g.Key, g => g.Count())
         };
 
         return View(model);

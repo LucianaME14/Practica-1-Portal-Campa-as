@@ -13,9 +13,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Si te da problemas con https, comenta esta línea temporalmente
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
