@@ -1,0 +1,87 @@
+@model List<PortalCampanas.Models.Campana>
+
+@{
+    ViewData["Title"] = "Campañas Comerciales";
+    var categorias = ViewBag.Categorias as List<string> ?? new();
+    var estados = ViewBag.Estados as List<string> ?? new();
+}
+
+<section class="page-header">
+    <h1>Campañas Comerciales</h1>
+</section>
+
+<form method="get" asp-action="Index" class="filters-bar">
+    <select name="categoria" class="form-control">
+        <option value="">Categoría</option>
+        @foreach (var categoria in categorias)
+        {
+            if (ViewBag.CategoriaSeleccionada == categoria)
+            {
+                <option value="@categoria" selected>@categoria</option>
+            }
+            else
+            {
+                <option value="@categoria">@categoria</option>
+            }
+        }
+    </select>
+
+    <select name="estado" class="form-control">
+        <option value="">Estado</option>
+        @foreach (var estado in estados)
+        {
+            if (ViewBag.EstadoSeleccionado == estado)
+            {
+                <option value="@estado" selected>@estado</option>
+            }
+            else
+            {
+                <option value="@estado">@estado</option>
+            }
+        }
+    </select>
+
+    <button type="submit" class="btn btn-primary-soft">Filtrar</button>
+    <a asp-action="Index" class="btn btn-secondary-soft">Limpiar</a>
+</form>
+
+<div class="campaign-grid">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var campana in Model)
+        {
+            var estadoClase = campana.Estado switch
+            {
+                "Vigente" => "badge-vigente",
+                "Próxima" => "badge-proxima",
+                "Finalizada" => "badge-finalizada",
+                _ => "badge-finalizada"
+            };
+
+            <article class="campaign-card">
+                <div class="campaign-card__top">
+                    <h3>@campana.Nombre</h3>
+                    <span class="badge @estadoClase">@campana.Estado</span>
+                </div>
+
+                <div class="campaign-meta">
+                    <span>@campana.Categoria</span>
+                    <span>% @campana.DescuentoPct</span>
+                    <span>@campana.FechaInicio.ToString("dd MMM. yyyy")</span>
+                </div>
+
+                <div class="campaign-channel">
+                    @campana.Canal
+                </div>
+
+                <a asp-action="Detalle" asp-route-id="@campana.Id" class="btn btn-card">
+                    Ver detalle
+                </a>
+            </article>
+        }
+    }
+    else
+    {
+        <p class="empty-state">No se encontraron campañas con los filtros seleccionados.</p>
+    }
+</div>

@@ -1,0 +1,53 @@
+@model PortalCampanas.Models.ResumenCampanasViewModel
+
+@{
+    ViewData["Title"] = "Resumen de campañas";
+}
+
+<section class="page-header">
+    <h1>Resumen de Campañas</h1>
+    <p class="summary-subtitle">Indicadores generales calculados en memoria</p>
+</section>
+
+<div class="summary-grid">
+    <div class="summary-card">
+        <span>Total campañas</span>
+        <strong>@Model.TotalCampanas</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Campañas vigentes</span>
+        <strong>@Model.CampanasVigentes</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Campañas próximas</span>
+        <strong>@Model.CampanasProximas</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Promedio de descuento</span>
+        <strong>@Model.PromedioDescuento%</strong>
+    </div>
+</div>
+
+<section class="channel-box">
+    <h2>Cantidad por canal</h2>
+
+    <div class="channel-grid">
+        @if (Model.CantidadPorCanal != null && Model.CantidadPorCanal.Any())
+        {
+            foreach (var item in Model.CantidadPorCanal)
+            {
+                <div class="channel-card">
+                    <span>@item.Key</span>
+                    <strong>@item.Value</strong>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No hay datos disponibles por canal.</p>
+        }
+    </div>
+</section>

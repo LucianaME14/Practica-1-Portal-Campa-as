@@ -1,0 +1,59 @@
+@model PortalCampanas.Models.Campana
+
+@{
+    ViewData["Title"] = "Detalle de campaña";
+}
+
+<div class="detail-wrapper">
+    <a asp-action="Index" class="back-link">← Volver al listado</a>
+
+    <section class="detail-card">
+        <div class="campaign-card__top">
+            <h1>@Model.Nombre</h1>
+
+            @{
+                var estadoClase = Model.Estado switch
+                {
+                    "Vigente" => "badge-vigente",
+                    "Próxima" => "badge-proxima",
+                    "Finalizada" => "badge-finalizada",
+                    _ => "badge-finalizada"
+                };
+            }
+
+            <span class="badge @estadoClase">@Model.Estado</span>
+        </div>
+
+        <div class="detail-grid">
+            <div>
+                <label>Categoría</label>
+                <p>@Model.Categoria</p>
+            </div>
+
+            <div>
+                <label>Canal</label>
+                <p>@Model.Canal</p>
+            </div>
+
+            <div>
+                <label>Fecha de inicio</label>
+                <p>@Model.FechaInicio.ToString("dd 'de' MMMM 'de' yyyy")</p>
+            </div>
+
+            <div>
+                <label>Fecha de fin</label>
+                <p>@Model.FechaFin.ToString("dd 'de' MMMM 'de' yyyy")</p>
+            </div>
+
+            <div>
+                <label>Descuento</label>
+                <p>@Model.DescuentoPct%</p>
+            </div>
+        </div>
+
+        <div class="detail-description">
+            <label>Descripción</label>
+            <p>@Model.Descripcion</p>
+        </div>
+    </section>
+</div>
