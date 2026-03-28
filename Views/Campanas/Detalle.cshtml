@@ -7,6 +7,8 @@
 <div class="detail-wrapper">
     <a asp-action="Index" class="back-link">← Volver al listado</a>
 
+    <p class="summary-subtitle">Información detallada de la campaña seleccionada</p>
+
     <section class="detail-card">
         <div class="campaign-card__top">
             <h1>@Model.Nombre</h1>
@@ -52,7 +54,7 @@
         </div>
 
         <div class="detail-description">
-            <label>Descripción</label>
+            <label>Descripción de la campaña</label>
             <p>@Model.Descripcion</p>
         </div>
     </section>
