@@ -57,7 +57,7 @@ public class CampanasController : Controller
             CampanasVigentes = campanas.Count(c => c.Estado == "Vigente"),
             CampanasProximas = campanas.Count(c => c.Estado == "Próxima"),
             PromedioDescuento = campanas.Any()
-                ? Math.Round(campanas.Average(c => c.DescuentoPct), 2)
+                ? Math.Round(campanas.Average(c => c.DescuentoPct), 0)
                 : 0,
             CantidadPorCanal = campanas
                 .GroupBy(c => c.Canal)
